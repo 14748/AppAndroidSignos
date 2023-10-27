@@ -1,8 +1,10 @@
-package com.example.appsignos;
+package com.example.appsignos.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.appsignos.R;
 
 public class MainActivity extends AppCompatActivity {
 
