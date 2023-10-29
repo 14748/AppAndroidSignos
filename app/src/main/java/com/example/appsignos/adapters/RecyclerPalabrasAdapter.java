@@ -1,6 +1,5 @@
 package com.example.appsignos.adapters;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,37 +8,42 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.appsignos.R;
+import com.example.appsignos.models.Palabra;
 
 import java.util.List;
 
-public class RecyclerPalabrasAdapter extends RecyclerView.Adapter<RecyclerDataAdapter.RecyclerDataHolder> {
+public class RecyclerPalabrasAdapter extends RecyclerView.Adapter<RecyclerPalabrasAdapter.RecyclerDataHolder> {
 
-    List<Item> listItems;
+    List<Palabra> listPalabras;
     onItemClickListener listener;
 
-    public RecyclerDataAdapter(List<Item> listItems, onItemClickListener listener){
-        this.listItems = listItems;
+    public RecyclerPalabrasAdapter(List<Palabra> listPalabras, onItemClickListener listener){
+        this.listPalabras = listPalabras;
         this.listener = listener;
     }
 
+
     @NonNull
     @Override
-    public RecyclerDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item, parent, false);
+    public RecyclerPalabrasAdapter.RecyclerDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.palabra_recycler_view, parent, false);
         return new RecyclerDataHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerDataHolder holder, int position) {
-        holder.assignData(listItems.get(position), listener);
+    public void onBindViewHolder(@NonNull RecyclerPalabrasAdapter.RecyclerDataHolder holder, int position) {
+        holder.assignData(listPalabras.get(position), listener);
     }
 
     @Override
     public int getItemCount() {
-        return listItems.size();
+        return listPalabras.size();
     }
+
+
 
 
 
@@ -48,33 +52,33 @@ public class RecyclerPalabrasAdapter extends RecyclerView.Adapter<RecyclerDataAd
 
 
     public class RecyclerDataHolder extends RecyclerView.ViewHolder {
-        TextView title;
+
+        TextView word;
         ImageView image;
-        LinearLayout linear_text;
-        LinearLayout linear_image;
+        LinearLayout linearLayout_palabra;
+        LinearLayout linearLayout_image;
         public RecyclerDataHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.idItemTitle);
-            image = itemView.findViewById(R.id.idItemImage);
-            linear_image = itemView.findViewById(R.id.layout_image);
-            linear_text = itemView.findViewById(R.id.layout_text);
+            word = itemView.findViewById(R.id.wordPalabra_textView);
+            image = itemView.findViewById(R.id.imagenPalabra_imageView);
+            linearLayout_palabra = itemView.findViewById(R.id.palabra_LinearLayout);
+            linearLayout_image = itemView.findViewById(R.id.image_LinearLayout);
         }
 
-        public void assignData(Item item, onItemClickListener onItemClickListener) {
-            title.setText(item.getTitle());
-            image.setImageResource(item.getImage());
-            linear_text.setOrientation(LinearLayout.HORIZONTAL);
-            linear_image.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), item.getPrimaryColor()));
-            linear_text.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), item.getSecondaryColor()));
+        public void assignData(Palabra palabra, onItemClickListener onItemClickListener){
+            word.setText(palabra.getPalabra());
+            image.setImageResource(palabra.getImagen());
+            //TODO: falta ponerle colores y eso, hay que hablar de cómo darle estilo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClickListener.onItemClickListener(item);
+                    onItemClickListener.onItemClickListener(palabra);
                 }
             });
+            }
         }
-    }
     public interface onItemClickListener{
-        void onItemClickListener(Item item);
+            void onItemClickListener(Palabra palabra);
     }
-}
+    }
+
