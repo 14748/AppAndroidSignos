@@ -6,10 +6,12 @@ import java.util.List;
 public class Categoria {
     private int id;
     private String nombre;
+    private int imagenResourceId; // Agregar un campo para la imagen
 
-    public Categoria(int id, String nombre) {
+    public Categoria(int id, String nombre, int imagenResourceId) {
         this.id = id;
         this.nombre = nombre;
+        this.imagenResourceId = imagenResourceId;
     }
 
     public int getId() {
@@ -26,5 +28,13 @@ public class Categoria {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getImagenResourceId() {
+        return imagenResourceId;
+    }
+
+    public void setImagenResourceId(int imagenResourceId) {
+        this.imagenResourceId = imagenResourceId;
     }
 }
