@@ -1,12 +1,17 @@
 package com.example.appsignos.models;
 
-public class Palabra {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Palabra extends RealmObject {
+    @PrimaryKey
     private int id;
     private String definicion; //es la palabra en sí, para no repetir clase y propiedad palabra
     private String descripcion;
     private int imagen;
     private Categoria categoria;
 
+    public Palabra(){}
     public Palabra(int id, String definicion, String descripcion, int imagen, Categoria categoria) {
         this.id = id;
         this.definicion = definicion;
