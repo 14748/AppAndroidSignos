@@ -66,7 +66,7 @@ public class RecyclerPalabrasAdapter extends RecyclerView.Adapter<RecyclerPalabr
         }
 
         public void assignData(Palabra palabra, onItemClickListener onItemClickListener){
-            word.setText(palabra.getPalabra());
+            word.setText(palabra.getDefinicion());
             image.setImageResource(palabra.getImagen());
             //TODO: falta ponerle colores y eso, hay que hablar de cómo darle estilo
             itemView.setOnClickListener(new View.OnClickListener() {

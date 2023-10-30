@@ -2,8 +2,7 @@ package com.example.appsignos.models;
 
 public class Palabra {
     private int id;
-    private String palabra;
-    private String definicion;
+    private String definicion; //es la palabra en sí, para no repetir clase y propiedad palabra
     private String descripcion;
     private int imagen;
     private Categoria categoria;
@@ -23,10 +22,6 @@ public class Palabra {
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getPalabra() { return palabra;}
-
-    public void setPalabra(String palabra) {this.palabra = palabra;}
 
     public String getDefinicion() {
         return definicion;
