@@ -12,8 +12,9 @@ public class Palabra extends RealmObject {
     private Categoria categoria;
 
     public Palabra(){}
-    public Palabra(int id, String definicion, String descripcion, int imagen, Categoria categoria) {
-        this.id = id;
+    public Palabra(String definicion, String descripcion, int imagen, Categoria categoria) {
+        //this.id = id;
+        //TODO HACER ID AUTOINCREMENT
         this.definicion = definicion;
         this.descripcion = descripcion;
         this.imagen = imagen;

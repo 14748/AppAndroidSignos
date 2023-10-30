@@ -12,8 +12,9 @@ public class Categoria extends RealmObject {
     private String nombre;
     private int imagenResourceId; // Agregar un campo para la imagen
     public Categoria(){}
-    public Categoria(int id, String nombre, int imagenResourceId) {
-        this.id = id;
+    public Categoria(String nombre, int imagenResourceId) {
+        //this.id = id;
+        // TODO HACER AUTOINCREMENT ID
         this.nombre = nombre;
         this.imagenResourceId = imagenResourceId;
     }
