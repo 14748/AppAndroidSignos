@@ -1,14 +1,19 @@
 package com.example.appsignos.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.appsignos.R;
+import com.example.appsignos.adapters.RecyclerPalabrasAdapter;
 import com.example.appsignos.models.Categoria;
 import com.example.appsignos.models.Palabra;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
@@ -27,7 +32,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ArrayList<Palabra> pal = new ArrayList<Palabra>();
+        pal.add(new Palabra("patata", "patata", R.drawable.cuchillo, new Categoria("Adjetivos", 1)));
 
+        RecyclerView recyclerView = findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setAdapter(new RecyclerPalabrasAdapter(pal, new RecyclerPalabrasAdapter.onItemClickListener() {
+            @Override
+            public void onItemClickListener(Palabra palabra) {
+
+            }
+        }));
+
+        /*
         realm = Realm.getDefaultInstance();
 
         // CREACIÓN CATEGORÍAS
@@ -60,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         //FIN CREACIÓN CATEGORÍAS
 
         // CREACIÓN DE OBJETOS DE LA BASE DE DATOS
-        listaPalabras.add(new Palabra("x", "descripcion", )) //TODO COMPLETAR
+        //listaPalabras.add(new Palabra("x", "descripcion", )) //TODO COMPLETAR
         //FIN CREACIÓN OBJETOS DE LA BASE DE DATOS
 
         realm.beginTransaction();
@@ -69,5 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
         resultsCategoria = realm.where(Categoria.class).findAll();
         resultsPalabra = realm.where(Palabra.class).findAll();
+         */
     }
 }
