@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         pal.add(new Palabra("contar", "enumerar o relatar", R.drawable.contar, Verbos));
         pal.add(new Palabra("correr", "desplazarse rápidamente", R.drawable.correr, Verbos));
         pal.add(new Palabra("cortar", "dividir algo usando algo afilado", R.drawable.cortar, Verbos));
-        pal.add(new Palabra("crecer-planta", "aumentar de tamaño en plantas", R.drawable.crecerplanta, Verbos));
+        pal.add(new Palabra("crecer-planta", "aumentar de tamaño en plantas", R.drawable.crecerPlanta, Verbos));
         pal.add(new Palabra("crecer", "aumentar de tamaño", R.drawable.crecer, Verbos));
         pal.add(new Palabra("descansar", "reposar para recuperarse", R.drawable.descansar, Verbos));
         pal.add(new Palabra("dormir", "estar en reposo cerrando los ojos", R.drawable.dormir, Verbos));
