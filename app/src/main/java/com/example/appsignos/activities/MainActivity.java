@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ArrayList<Palabra> pal = new ArrayList<Palabra>();
+        ArrayList<Categoria> listaCategoria = new ArrayList<Categoria>();
 
         
 
@@ -684,7 +685,7 @@ public class MainActivity extends AppCompatActivity {
         pal.add(new Palabra("tijeras", "instrumento para cortar", R.drawable.tijeras, CosasDelColegio));
         pal.add(new Palabra("tiza", "material para escribir en pizarras", R.drawable.tiza, CosasDelColegio));
 
-        /*
+
         RecyclerView recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(new RecyclerPalabrasAdapter(pal, new RecyclerPalabrasAdapter.onItemClickListener() {
@@ -693,7 +694,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }));
-        */
+
 
         //FIN CREACIÓN CATEGORÍAS
 
@@ -701,9 +702,11 @@ public class MainActivity extends AppCompatActivity {
         //listaPalabras.add(new Palabra("x", "descripcion", )) //TODO COMPLETAR
         //FIN CREACIÓN OBJETOS DE LA BASE DE DATOS
 
+        /*
         realm.beginTransaction();
 
         realm.commitTransaction();
+         */
 
         resultsCategoria = realm.where(Categoria.class).findAll();
         resultsPalabra = realm.where(Palabra.class).findAll();

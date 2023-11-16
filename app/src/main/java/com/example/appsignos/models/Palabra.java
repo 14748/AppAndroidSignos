@@ -1,5 +1,7 @@
 package com.example.appsignos.models;
 
+import com.example.appsignos.app.MyApplication;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -13,8 +15,7 @@ public class Palabra extends RealmObject {
 
     public Palabra(){}
     public Palabra(String definicion, String descripcion, int imagen, Categoria categoria) {
-        //this.id = id;
-        //TODO HACER ID AUTOINCREMENT
+        this.id = MyApplication.palabraID.incrementAndGet();
         this.definicion = definicion;
         this.descripcion = descripcion;
         this.imagen = imagen;

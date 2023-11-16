@@ -1,7 +1,6 @@
 package com.example.appsignos.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.appsignos.app.MyApplication;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -13,8 +12,7 @@ public class Categoria extends RealmObject {
     private int imagenResourceId; // Agregar un campo para la imagen
     public Categoria(){}
     public Categoria(String nombre, int imagenResourceId) {
-        //this.id = id;
-        // TODO HACER AUTOINCREMENT ID
+        this.id = MyApplication.categoriaID.incrementAndGet();
         this.nombre = nombre;
         this.imagenResourceId = imagenResourceId;
     }
