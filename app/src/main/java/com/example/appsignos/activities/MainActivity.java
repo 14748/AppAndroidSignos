@@ -686,21 +686,20 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerView.setAdapter(new RecyclerPalabrasAdapter(pal, new RecyclerPalabrasAdapter.onItemClickListener() {
+        resultsPalabra = realm.where(Palabra.class).findAll();
+        if (resultsPalabra.size() == 0){
+            realm.beginTransaction();
+            realm.copyToRealm(pal);
+            realm.commitTransaction();
+        }
+        recyclerView.setAdapter(new RecyclerPalabrasAdapter(resultsPalabra, new RecyclerPalabrasAdapter.onItemClickListener() {
             @Override
             public void onItemClickListener(Palabra palabra) {
 
             }
         }));
 
-        if (resultsCategoria.size() == 0 && resultsPalabra.size() == 0){
-            realm.beginTransaction();
-            realm.copyToRealm(pal);
-            realm.commitTransaction();
-        }
 
-        resultsCategoria = realm.where(Categoria.class).findAll();
-        resultsPalabra = realm.where(Palabra.class).findAll();
 
     }
 }
