@@ -693,6 +693,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
 
+        if (resultsCategoria.size() == 0 && resultsPalabra.size() == 0){
+            realm.beginTransaction();
+            realm.copyToRealm(pal);
+            realm.commitTransaction();
+        }
+
         resultsCategoria = realm.where(Categoria.class).findAll();
         resultsPalabra = realm.where(Palabra.class).findAll();
 
