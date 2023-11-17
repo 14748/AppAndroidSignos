@@ -11,7 +11,8 @@ public class Utils {
     public static AbstractMap.SimpleEntry<ArrayList<Palabra>, ArrayList<Categoria>> CargarPalabras(){
         ArrayList<Palabra> listaPalabras = new ArrayList<Palabra>();
         ArrayList<Categoria> listaCategoria = new ArrayList<Categoria>();
-        Categoria Adjetivos = new Categoria("Adjetivos", R.drawable.adjetivos);
+
+        Categoria Adjetivos = new Categoria("Adjetivos", R.drawable.categoria_adjetivo);
         listaCategoria.add(Adjetivos);
 
         listaPalabras.add(new Palabra("aburrido", "sentimiento de desinterés", R.drawable.aburrido, Adjetivos));
@@ -61,7 +62,7 @@ public class Utils {
         listaPalabras.add(new Palabra("ultimo", "que sigue a todos los demás", R.drawable.ultimo, Adjetivos));
         listaPalabras.add(new Palabra("vacio", "sin contenido o personas", R.drawable.vacio, Adjetivos));
 
-        Categoria Adverbios = new Categoria("Adverbios", R.drawable.adjetivos);
+        Categoria Adverbios = new Categoria("Adverbios", R.drawable.categoria_adverbio);
         listaCategoria.add(Adjetivos);
 
         listaPalabras.add(new Palabra("abajo", "direction towards a lower position", R.drawable.abajo, Adverbios));
@@ -80,7 +81,7 @@ public class Utils {
         listaPalabras.add(new Palabra("lejos", "at a distance", R.drawable.lejos, Adverbios));
         listaPalabras.add(new Palabra("mal", "in an unsatisfactory manner", R.drawable.mal, Adverbios));
 
-        Categoria Verbos = new Categoria("Verbos", R.drawable.adjetivos);
+        Categoria Verbos = new Categoria("Verbos", R.drawable.categoria_verbo);
         listaCategoria.add(Verbos);
 
         listaPalabras.add(new Palabra("abrazar", "acto de envolver con los brazos", R.drawable.abrazar, Verbos));
@@ -142,7 +143,7 @@ public class Utils {
         listaPalabras.add(new Palabra("vestirse", "ponerse la ropa", R.drawable.vestirse, Verbos));
         listaPalabras.add(new Palabra("vivir", "tener vida o existir", R.drawable.vivir, Verbos));
 
-        Categoria DiasSemana = new Categoria("Días de la semana", R.drawable.adjetivos);
+        Categoria DiasSemana = new Categoria("Días de la semana", R.drawable.categoria_dia);
         listaCategoria.add(DiasSemana);
 
         listaPalabras.add(new Palabra("dia-de-la-semana", "cualquier día entre lunes y domingo", R.drawable.dia_de_la_semana, DiasSemana));
@@ -158,7 +159,7 @@ public class Utils {
         listaPalabras.add(new Palabra("viernes", "cuarto día de la semana", R.drawable.viernes, DiasSemana));
 
 
-        Categoria Estaciones = new Categoria("Estaciones", R.drawable.adjetivos);
+        Categoria Estaciones = new Categoria("Estaciones", R.drawable.categoria_estacion);
         listaCategoria.add(Estaciones);
 
         listaPalabras.add(new Palabra("estaciones", "divisiones del año según condiciones climáticas", R.drawable.estaciones, Estaciones));
@@ -167,7 +168,7 @@ public class Utils {
         listaPalabras.add(new Palabra("primavera", "estación del año entre invierno y verano", R.drawable.primavera, Estaciones));
         listaPalabras.add(new Palabra("verano", "estación más cálida del año", R.drawable.verano, Estaciones));
 
-        Categoria Fiestas = new Categoria("Fiestas", R.drawable.adjetivos);
+        Categoria Fiestas = new Categoria("Fiestas", R.drawable.categoria_fiesta);
         listaCategoria.add(Fiestas);
 
         listaPalabras.add(new Palabra("cumpleanos", "celebración del aniversario del nacimiento", R.drawable.cumpleanos, Fiestas));
@@ -176,7 +177,7 @@ public class Utils {
         listaPalabras.add(new Palabra("papa-noel", "personaje legendario que trae regalos en Navidad", R.drawable.papanoel, Fiestas));
         listaPalabras.add(new Palabra("reyes-magos", "tres figuras que traen regalos el 6 de enero", R.drawable.reyesmagos, Fiestas));
 
-        Categoria MesesDelAño = new Categoria("Meses del año", R.drawable.adjetivos);
+        Categoria MesesDelAño = new Categoria("Meses del año", R.drawable.categoria_mes);
         listaCategoria.add(MesesDelAño);
 
         listaPalabras.add(new Palabra("calendario", "sistema para medir el tiempo", R.drawable.calendario, MesesDelAño));
@@ -189,7 +190,7 @@ public class Utils {
         listaPalabras.add(new Palabra("octubre", "décimo mes del año", R.drawable.octubre, MesesDelAño));
         listaPalabras.add(new Palabra("septiembre", "noveno mes del año", R.drawable.septiembre, MesesDelAño));
 
-        Categoria Tiempo = new Categoria("Tiempo", R.drawable.adjetivos);
+        Categoria Tiempo = new Categoria("Tiempo", R.drawable.categoria_tiempo);
         listaCategoria.add(Tiempo);
 
         listaPalabras.add(new Palabra("ayer", "día que precede al de hoy", R.drawable.ayer, Tiempo));
@@ -206,7 +207,7 @@ public class Utils {
         listaPalabras.add(new Palabra("y-cuarto", "quince minutos después de la hora", R.drawable.ycuarto, Tiempo));
         listaPalabras.add(new Palabra("y-media", "treinta minutos después de la hora", R.drawable.ymedia, Tiempo));
 
-        Categoria Casa = new Categoria("Casa", R.drawable.adjetivos);
+        Categoria Casa = new Categoria("Casa", R.drawable.categoria_casa);
         listaCategoria.add(Casa);
 
         listaPalabras.add(new Palabra("alfombra", "tela gruesa que se pone en el suelo", R.drawable.alfombra, Casa));
@@ -240,7 +241,7 @@ public class Utils {
         listaPalabras.add(new Palabra("ventana", "apertura en una pared para entrar luz y aire", R.drawable.ventana, Casa));
         listaPalabras.add(new Palabra("video", "sistema de grabación de imágenes y sonidos", R.drawable.video, Casa));
 
-        Categoria ObjetosDeCocina = new Categoria("Objetos de cocina", R.drawable.adjetivos);
+        Categoria ObjetosDeCocina = new Categoria("Objetos de cocina", R.drawable.categoria_cocina);
         listaCategoria.add(ObjetosDeCocina);
 
         listaPalabras.add(new Palabra("cacerola", "recipiente de cocina para cocer alimentos", R.drawable.cacerola, ObjetosDeCocina));
@@ -257,7 +258,7 @@ public class Utils {
         listaPalabras.add(new Palabra("tenedor", "instrumento para pinchar y llevar a la boca alimentos sólidos", R.drawable.tenedor, ObjetosDeCocina));
         listaPalabras.add(new Palabra("vaso", "recipiente para beber", R.drawable.vaso, ObjetosDeCocina));
 
-        Categoria ObjetosDelBaño = new Categoria("Objetos del baño", R.drawable.adjetivos);
+        Categoria ObjetosDelBaño = new Categoria("Objetos del baño", R.drawable.categoria_bano);
         listaCategoria.add(ObjetosDelBaño);
 
         listaPalabras.add(new Palabra("banera", "recipiente grande para bañarse", R.drawable.banera, ObjetosDelBaño));
@@ -275,7 +276,7 @@ public class Utils {
         listaPalabras.add(new Palabra("peine", "instrumento con púas para ordenar el cabello", R.drawable.peine, ObjetosDelBaño));
         listaPalabras.add(new Palabra("toalla", "tela para secar el cuerpo o las manos", R.drawable.toalla, ObjetosDelBaño));
 
-        Categoria MediosDeTransporte = new Categoria("Medios de transporte", R.drawable.adjetivos);
+        Categoria MediosDeTransporte = new Categoria("Medios de transporte", R.drawable.categoria_transporte);
         listaCategoria.add(MediosDeTransporte);
 
         listaPalabras.add(new Palabra("ambulancia", "vehículo destinado a asistencia o emergencias médicas", R.drawable.ambulancia, MediosDeTransporte));
@@ -289,7 +290,7 @@ public class Utils {
         listaPalabras.add(new Palabra("vehiculo", "medio de transporte terrestre, aéreo o acuático", R.drawable.vehiculo, MediosDeTransporte));
 
 
-        Categoria Ciudad = new Categoria("Ciudad", R.drawable.adjetivos);
+        Categoria Ciudad = new Categoria("Ciudad", R.drawable.categoria_ciudad);
         listaCategoria.add(Ciudad);
 
         listaPalabras.add(new Palabra("acera", "parte de la calle destinada para peatones", R.drawable.acera, Ciudad));
@@ -322,7 +323,7 @@ public class Utils {
         listaPalabras.add(new Palabra("zapateria", "tienda de zapatos", R.drawable.zapateria, Ciudad));
 
 
-        Categoria Profesiones = new Categoria("Profesiones", R.drawable.adjetivos);
+        Categoria Profesiones = new Categoria("Profesiones", R.drawable.categoria_profesion);
         listaCategoria.add(Profesiones);
 
         listaPalabras.add(new Palabra("bombero", "persona que se dedica a extinguir incendios", R.drawable.bombero, Profesiones));
@@ -334,7 +335,7 @@ public class Utils {
         listaPalabras.add(new Palabra("profesor", "persona que ejerce la docencia", R.drawable.profesor, Profesiones));
         listaPalabras.add(new Palabra("transporte", "medio en el que se lleva algo de un lugar a otro", R.drawable.transporte, Profesiones));
 
-        Categoria Colegio = new Categoria("Colegio", R.drawable.adjetivos);
+        Categoria Colegio = new Categoria("Colegio", R.drawable.categoria_colegio);
         listaCategoria.add(Colegio);
 
         listaPalabras.add(new Palabra("abecedario", "conjunto de letras de un idioma", R.drawable.abecedario, Colegio));
@@ -356,7 +357,7 @@ public class Utils {
         listaPalabras.add(new Palabra("servicio", "acción y efecto de servir", R.drawable.servicio, Colegio));
         listaPalabras.add(new Palabra("suma", "operación matemática de juntar varias cantidades", R.drawable.suma, Colegio));
 
-        Categoria Colores = new Categoria("Colores", R.drawable.adjetivos);
+        Categoria Colores = new Categoria("Colores", R.drawable.categoria_color);
         listaCategoria.add(Colores);
 
         listaPalabras.add(new Palabra("amarillo", "color del sol o el oro", R.drawable.amarillo, Colores));
@@ -370,7 +371,7 @@ public class Utils {
         listaPalabras.add(new Palabra("rosa", "color de las flores de la planta del mismo nombre", R.drawable.rosa, Colores));
         listaPalabras.add(new Palabra("verde", "color de la hierba fresca", R.drawable.verde, Colores));
 
-        Categoria FormasYTamaños = new Categoria("Formas y tamaños", R.drawable.adjetivos);
+        Categoria FormasYTamaños = new Categoria("Formas y tamaños", R.drawable.categoria_forma);
         listaCategoria.add(FormasYTamaños);
 
         listaPalabras.add(new Palabra("circulo", "figura geométrica que es completamente redonda", R.drawable.circulo, FormasYTamaños));
@@ -384,7 +385,7 @@ public class Utils {
         listaPalabras.add(new Palabra("tamano", "dimensión o magnitud de algo", R.drawable.tamano, FormasYTamaños));
         listaPalabras.add(new Palabra("triangulo", "figura geométrica con tres lados y tres ángulos", R.drawable.triangulo, FormasYTamaños));
 
-        Categoria ComidasYBebidas = new Categoria("Comidas y bebidas", R.drawable.adjetivos);
+        Categoria ComidasYBebidas = new Categoria("Comidas y bebidas", R.drawable.categoria_comida);
         listaCategoria.add(ComidasYBebidas);
 
         listaPalabras.add(new Palabra("aceite", "líquido graso que se obtiene de algunas plantas, semillas o frutas", R.drawable.aceite, ComidasYBebidas));
@@ -421,7 +422,7 @@ public class Utils {
         listaPalabras.add(new Palabra("zanahoria", "raíz comestible de color naranja", R.drawable.zanahoria, ComidasYBebidas));
         listaPalabras.add(new Palabra("zumo", "líquido que se extrae de un cuerpo, especialmente de una fruta", R.drawable.zumo, ComidasYBebidas));
 
-        Categoria Cuerpo = new Categoria("Cuerpo", R.drawable.adjetivos);
+        Categoria Cuerpo = new Categoria("Cuerpo", R.drawable.categoria_cuerpo);
         listaCategoria.add(Cuerpo);
 
         listaPalabras.add(new Palabra("boca", "orificio anterior del tubo digestivo de los animales, situado en la cabeza", R.drawable.boca, Cuerpo));
@@ -442,7 +443,7 @@ public class Utils {
         listaPalabras.add(new Palabra("pierna", "extremidad inferior del cuerpo humano, que va desde la cadera hasta el pie", R.drawable.pierna, Cuerpo));
         listaPalabras.add(new Palabra("vulva", "parte externa de los órganos genitales femeninos", R.drawable.vulva, Cuerpo));
 
-        Categoria Sentidos = new Categoria("Sentidos", R.drawable.adjetivos);
+        Categoria Sentidos = new Categoria("Sentidos", R.drawable.categoria_sentido);
         listaCategoria.add(Sentidos);
 
         listaPalabras.add(new Palabra("gusto", "sentido que permite percibir sabores a través de la lengua", R.drawable.gusto, Sentidos));
@@ -452,7 +453,7 @@ public class Utils {
         listaPalabras.add(new Palabra("tacto", "sentido que permite reconocer las cualidades de los objetos y seres vivos mediante el contacto", R.drawable.tacto, Sentidos));
         listaPalabras.add(new Palabra("vista", "sentido que permite percibir formas, colores y movimiento a través de los ojos", R.drawable.vista, Sentidos));
 
-        Categoria Familia = new Categoria("Familia", R.drawable.adjetivos);
+        Categoria Familia = new Categoria("Familia", R.drawable.categoria_familia);
         listaCategoria.add(Familia);
 
         listaPalabras.add(new Palabra("abuelo", "padre de uno de los padres de una persona", R.drawable.abuelo, Familia));
@@ -471,7 +472,7 @@ public class Utils {
         listaPalabras.add(new Palabra("sordociego", "persona que no tiene capacidad de ver ni oír", R.drawable.sordociego, Familia));
         listaPalabras.add(new Palabra("tio", "hermano del padre o de la madre de una persona", R.drawable.tio, Familia));
 
-        Categoria Animales = new Categoria("Animales", R.drawable.adjetivos);
+        Categoria Animales = new Categoria("Animales", R.drawable.categoria_animal);
         listaCategoria.add(Animales);
 
         listaPalabras.add(new Palabra("abeja", "insecto volador, de color amarillo y negro, que produce miel y cera", R.drawable.abeja, Animales));
@@ -508,7 +509,7 @@ public class Utils {
         listaPalabras.add(new Palabra("vaca", "mamífero rumiante doméstico que produce leche", R.drawable.vaca, Animales));
         listaPalabras.add(new Palabra("zoo", "lugar donde se exhiben animales", R.drawable.zoo, Animales));
 
-        Categoria Naturaleza = new Categoria("Naturaleza", R.drawable.adjetivos);
+        Categoria Naturaleza = new Categoria("Naturaleza", R.drawable.categoria_naturaleza);
         listaCategoria.add(Naturaleza);
 
         listaPalabras.add(new Palabra("abeto", "árbol de hojas perennes con forma cónica", R.drawable.abeto, Naturaleza));
@@ -537,7 +538,7 @@ public class Utils {
         listaPalabras.add(new Palabra("sombrilla", "objeto que proporciona sombra, especialmente en la playa", R.drawable.sombrilla, Naturaleza));
         listaPalabras.add(new Palabra("tienda-campana", "refugio portátil hecho de tela utilizado para acampar", R.drawable.tienda_campana, Naturaleza));
 
-        Categoria TiempoAtmosférico = new Categoria("Tiempo atmosférico", R.drawable.adjetivos);
+        Categoria TiempoAtmosférico = new Categoria("Tiempo atmosférico", R.drawable.categoria_tiempo_atmosferico);
         listaCategoria.add(TiempoAtmosférico);
 
         listaPalabras.add(new Palabra("calor", "sensación de alta temperatura", R.drawable.calor, TiempoAtmosférico));
@@ -551,7 +552,7 @@ public class Utils {
         listaPalabras.add(new Palabra("tormenta", "perturbación atmosférica con vientos fuertes, lluvia, truenos y relámpagos", R.drawable.tormenta, TiempoAtmosférico));
         listaPalabras.add(new Palabra("viento", "movimiento del aire en la atmósfera", R.drawable.viento, TiempoAtmosférico));
 
-        Categoria Ropa = new Categoria("Ropa", R.drawable.adjetivos);
+        Categoria Ropa = new Categoria("Ropa", R.drawable.categoria_ropa);
         listaCategoria.add(Ropa);
 
         listaPalabras.add(new Palabra("abrigo", "prenda de vestir que cubre el cuerpo y se usa para abrigarse del frío", R.drawable.abrigo, Ropa));
@@ -574,7 +575,7 @@ public class Utils {
         listaPalabras.add(new Palabra("zapato", "prenda que cubre el pie", R.drawable.zapato, Ropa));
 
 
-        Categoria SaludosYPreguntas = new Categoria("Saludos y preguntas", R.drawable.adjetivos);
+        Categoria SaludosYPreguntas = new Categoria("Saludos y preguntas", R.drawable.categoria_saludo);
         listaCategoria.add(SaludosYPreguntas);
 
         listaPalabras.add(new Palabra("como-se-dice", "interrogación para conocer la traducción de una palabra", R.drawable.como_se_dice, SaludosYPreguntas));
@@ -610,7 +611,7 @@ public class Utils {
         listaPalabras.add(new Palabra("si", "afirmación", R.drawable.si, SaludosYPreguntas));
         listaPalabras.add(new Palabra("signo", "símbolo o marca", R.drawable.signo, SaludosYPreguntas));
 
-        Categoria Postres = new Categoria("Postres", R.drawable.adjetivos);
+        Categoria Postres = new Categoria("Postres", R.drawable.categoria_postre);
         listaCategoria.add(Postres);
 
         listaPalabras.add(new Palabra("dulce", "alimento o sabor azucarado", R.drawable.dulce, Postres));
@@ -627,7 +628,7 @@ public class Utils {
         listaPalabras.add(new Palabra("tarta", "postre hecho de masa con relleno o cobertura", R.drawable.tarta, Postres));
         listaPalabras.add(new Palabra("uva", "fruta pequeña y redonda, generalmente morada o verde", R.drawable.uva, Postres));
 
-        Categoria CosasDelColegio = new Categoria("Cosas del Colegio", R.drawable.adjetivos);
+        Categoria CosasDelColegio = new Categoria("Cosas del Colegio", R.drawable.categoria_colegio);
         listaCategoria.add(CosasDelColegio);
 
         listaPalabras.add(new Palabra("boligrafo", "instrumento para escribir con tinta", R.drawable.boligrafo, CosasDelColegio));
@@ -653,7 +654,7 @@ public class Utils {
         listaPalabras.add(new Palabra("sacapuntas", "instrumento para afilar lápices", R.drawable.sacapuntas, CosasDelColegio));
         listaPalabras.add(new Palabra("tijeras", "instrumento para cortar", R.drawable.tijeras, CosasDelColegio));
         listaPalabras.add(new Palabra("tiza", "material para escribir en pizarras", R.drawable.tiza, CosasDelColegio));
-
+        
         return new AbstractMap.SimpleEntry<>(listaPalabras, listaCategoria);
     }
 }
