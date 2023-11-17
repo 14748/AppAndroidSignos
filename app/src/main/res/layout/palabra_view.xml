@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -11,8 +11,8 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="340dp"
-        android:contentDescription="desc"
         android:scaleType="centerCrop"
+        android:contentDescription="@string/app_name"
         tools:srcCompat="@drawable/cuchillo" />
 
     <!-- Name -->
@@ -20,25 +20,22 @@
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:textAppearance="?attr/textAppearanceHeadline6" />
 
     <!-- Description -->
     <TextView
         android:id="@+id/descriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Desc"
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:textAppearance="?attr/textAppearanceBody2" />
 
     <!-- Category -->
     <TextView
         android:id="@+id/categoryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Categoria"
-        android:textAppearance="?attr/textAppearanceCaption"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:textAppearance="?attr/textAppearanceCaption" />
 </LinearLayout>
