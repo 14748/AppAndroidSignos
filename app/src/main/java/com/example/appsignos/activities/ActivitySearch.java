@@ -34,6 +34,8 @@ public class ActivitySearch extends AppCompatActivity {
 
     TextView busquedaPal;
 
+    ArrayList<Palabra> arrayListPalabra;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +60,18 @@ public class ActivitySearch extends AppCompatActivity {
             resultsPalabra = realm.where(Palabra.class).findAll();
         }
 
+        arrayListPalabra = new ArrayList<>();
+        for (Palabra palabra : resultsPalabra) {
+            arrayListPalabra.add(realm.copyFromRealm(palabra));
+        }
+
 
         recyclerView.setAdapter(new RecyclerPalabrasAdapter(resultsPalabra, new RecyclerPalabrasAdapter.onItemClickListener() {
             @Override
             public void onItemClickListener(Palabra palabra) {
-
+                Intent intent = new Intent(ActivitySearch.this, PalabraActivity.class);
+                intent.putExtra("PalabraId", palabra.getId());
+                startActivity(intent);
             }
         }));
 
@@ -93,22 +102,20 @@ public class ActivitySearch extends AppCompatActivity {
     public void filtrar(String texto) {
         filtrarLista.clear();
         String textoLowerCase = texto.toLowerCase();
-        for (Palabra palabra : resultsPalabra) {
+        for (Palabra palabra : arrayListPalabra) {
             String definicion = palabra.getDefinicion().toLowerCase().trim();
             if (definicion.startsWith(textoLowerCase) || definicion.contains(textoLowerCase) || definicion.equals(textoLowerCase)) {
                 filtrarLista.add(palabra);
             }
         }
-
-        RecyclerPalabrasAdapter recyclerDataAdapter = new RecyclerPalabrasAdapter(filtrarLista, new RecyclerPalabrasAdapter.onItemClickListener() {
+        recyclerView.setAdapter(new RecyclerPalabrasAdapter(filtrarLista, new RecyclerPalabrasAdapter.onItemClickListener() {
             @Override
             public void onItemClickListener(Palabra palabra) {
-                // Puedes agregar el código necesario aquí si es necesario
+                Intent intent = new Intent(ActivitySearch.this, PalabraActivity.class);
+                intent.putExtra("PalabraId", palabra.getId());
+                startActivity(intent);
             }
-        });
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        // Usa el mismo RecyclerView que inicializaste en onCreate
-        recyclerView.setAdapter(recyclerDataAdapter);
+        }));
     }
 
 
