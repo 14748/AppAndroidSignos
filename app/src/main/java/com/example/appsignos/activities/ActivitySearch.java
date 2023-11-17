@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
 
 import com.example.appsignos.R;
 import com.example.appsignos.adapters.RecyclerPalabrasAdapter;
@@ -27,11 +30,16 @@ public class ActivitySearch extends AppCompatActivity {
     Realm realm;
     RealmResults<Palabra> resultsPalabra;
 
+    ArrayList<Palabra> pal;
+
+    TextView busquedaPal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        ArrayList<Palabra> pal = new ArrayList<Palabra>();
+
+        pal = new ArrayList<Palabra>();
         ArrayList<Categoria> listaCategoria = new ArrayList<Categoria>();
 
         realm = Realm.getDefaultInstance();
@@ -58,7 +66,50 @@ public class ActivitySearch extends AppCompatActivity {
             }
         }));
 
+        busquedaPal = findViewById(R.id.txtBuscador);
+        busquedaPal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filtrar(editable.toString());
+            }
+        });
+
+
+
 
 
     }
+    ArrayList<Palabra> filtrarLista = new ArrayList<>();
+    public void filtrar(String texto) {
+        filtrarLista.clear();
+        String textoLowerCase = texto.toLowerCase();
+        for (Palabra palabra : resultsPalabra) {
+            String definicion = palabra.getDefinicion().toLowerCase().trim();
+            if (definicion.startsWith(textoLowerCase) || definicion.contains(textoLowerCase) || definicion.equals(textoLowerCase)) {
+                filtrarLista.add(palabra);
+            }
+        }
+
+        RecyclerPalabrasAdapter recyclerDataAdapter = new RecyclerPalabrasAdapter(filtrarLista, new RecyclerPalabrasAdapter.onItemClickListener() {
+            @Override
+            public void onItemClickListener(Palabra palabra) {
+                // Puedes agregar el código necesario aquí si es necesario
+            }
+        });
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        // Usa el mismo RecyclerView que inicializaste en onCreate
+        recyclerView.setAdapter(recyclerDataAdapter);
+    }
+
+
 }

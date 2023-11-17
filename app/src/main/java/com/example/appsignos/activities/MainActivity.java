@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
 
 import com.example.appsignos.R;
 import com.example.appsignos.adapters.RecyclerCategoriasAdapter;
+import com.example.appsignos.adapters.RecyclerPalabrasAdapter;
 import com.example.appsignos.models.Categoria;
 import com.example.appsignos.models.Palabra;
 import com.example.appsignos.utils.Utils;
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     RealmResults<Categoria> resultsCategoria;
     Realm realm;
     RecyclerView recyclerView;
+    TextView busqueda;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +39,11 @@ public class MainActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
 
         resultsPalabra = realm.where(Palabra.class).findAll();
-
         if (resultsPalabra.size() == 0){
             realm.beginTransaction();
             AbstractMap.SimpleEntry<ArrayList<Palabra>, ArrayList<Categoria>> result = Utils.CargarPalabras();
-            realm.copyToRealm(result.getKey());
-            realm.copyToRealm(result.getValue());
+            realm.copyToRealmOrUpdate(result.getKey());
+            realm.copyToRealmOrUpdate(result.getValue());
             realm.commitTransaction();
         }
 
@@ -57,5 +61,49 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
 
+
+        busqueda = findViewById(R.id.txtBuscadorCat);
+        busqueda.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filtrar(editable.toString());
+            }
+        });
+
     }
+    ArrayList<Categoria> filtrarLista = new ArrayList<>();
+    public void filtrar(String texto) {
+        filtrarLista.clear();
+        String textoLowerCase = texto.toLowerCase();
+        for (Categoria cat : resultsCategoria) {
+            String definicion = cat.getNombre().toLowerCase().trim();
+            if (definicion.startsWith(textoLowerCase) || definicion.contains(textoLowerCase) || definicion.equals(textoLowerCase)) {
+                filtrarLista.add(cat);
+            }
+        }
+
+        RecyclerCategoriasAdapter recyclerDataAdapter = new RecyclerCategoriasAdapter(filtrarLista, new RecyclerCategoriasAdapter.OnCategoriaClickListener() {
+            @Override
+            public void onCategoriaClick(Categoria categoria) {
+                Intent intent = new Intent(MainActivity.this, ActivitySearch.class);
+                intent.putExtra("NombreCategoria", categoria.getNombre());
+                startActivity(intent);
+            }
+        });
+
+        // Use the correct RecyclerView ID here
+        RecyclerView recyclerView = findViewById(R.id.recyclerCategorias);
+        recyclerView.setAdapter(recyclerDataAdapter);
+    }
+
 }

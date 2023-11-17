@@ -8,10 +8,33 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCategorias"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="413dp"
+        android:layout_height="651dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:background="@color/white"
+        android:layout_width="390dp"
+        android:layout_height="69dp"
+        android:hint="Busca tu Palabra"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtBuscadorCat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:inputType="text"
+            android:gravity="top|start"
+            android:ems="10" />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
