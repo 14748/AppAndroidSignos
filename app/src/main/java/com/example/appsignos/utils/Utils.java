@@ -8,8 +8,15 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class Utils {
+    public static ArrayList<Palabra> listaPalabras;
+
+    public static ArrayList<Palabra> TodasLasPalabras(){
+        return listaPalabras;
+    };
+
+
     public static AbstractMap.SimpleEntry<ArrayList<Palabra>, ArrayList<Categoria>> CargarPalabras(){
-        ArrayList<Palabra> listaPalabras = new ArrayList<Palabra>();
+        listaPalabras = new ArrayList<Palabra>();
         ArrayList<Categoria> listaCategoria = new ArrayList<Categoria>();
 
         Categoria Adjetivos = new Categoria("Adjetivos", R.drawable.categoria_adjetivo);
