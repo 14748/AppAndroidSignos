@@ -13,6 +13,8 @@ public class Palabra extends RealmObject {
     private int imagen;
     private Categoria categoria;
 
+    private Boolean isFavorito = false;
+
     public Palabra(){}
     public Palabra(String definicion, String descripcion, int imagen, Categoria categoria) {
         this.id = MyApplication.palabraID.incrementAndGet();
@@ -60,5 +62,13 @@ public class Palabra extends RealmObject {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Boolean getFavorito() {
+        return isFavorito;
+    }
+
+    public void setFavorito(Boolean favorito) {
+        isFavorito = favorito;
     }
 }

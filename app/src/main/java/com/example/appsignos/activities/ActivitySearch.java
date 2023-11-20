@@ -10,10 +10,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.appsignos.R;
 import com.example.appsignos.adapters.RecyclerPalabrasAdapter;
@@ -60,9 +62,9 @@ public class ActivitySearch extends AppCompatActivity {
         Intent intent = getIntent();
         String data = intent.getStringExtra("NombreCategoria");
 
-        if (data != null) {
+        if (!TextUtils.isEmpty(data)){
             resultsPalabra = realm.where(Palabra.class).equalTo("categoria.nombre", data).findAll();
-        }else{
+        }else {
             resultsPalabra = realm.where(Palabra.class).findAll();
         }
 
@@ -71,15 +73,26 @@ public class ActivitySearch extends AppCompatActivity {
             arrayListPalabra.add(realm.copyFromRealm(palabra));
         }
 
+        recyclerView.setAdapter(new RecyclerPalabrasAdapter(resultsPalabra,
+                new RecyclerPalabrasAdapter.onItemClickListener() {
+                    @Override
+                    public void onItemClickListener(Palabra palabra) {
+                        Intent intent = new Intent(ActivitySearch.this, PalabraActivity.class);
+                        intent.putExtra("PalabraId", palabra.getId());
+                        startActivity(intent);
+                    }
+                },
+                new RecyclerPalabrasAdapter.onImageButtonClickListener() {
+                    @Override
+                    public void onImageButtonClickListener(Palabra palabra) {
+                        realm.beginTransaction();
+                        palabra.setFavorito(!palabra.getFavorito());
+                        Toast.makeText(ActivitySearch.this, "Favorito clicked for " + palabra.getDefinicion(), Toast.LENGTH_SHORT).show();
+                        realm.commitTransaction();
+                    }
+                }
+        ));
 
-        recyclerView.setAdapter(new RecyclerPalabrasAdapter(resultsPalabra, new RecyclerPalabrasAdapter.onItemClickListener() {
-            @Override
-            public void onItemClickListener(Palabra palabra) {
-                Intent intent = new Intent(ActivitySearch.this, PalabraActivity.class);
-                intent.putExtra("PalabraId", palabra.getId());
-                startActivity(intent);
-            }
-        }));
 
         busquedaPal = findViewById(R.id.txtBuscador);
         busquedaPal.addTextChangedListener(new TextWatcher() {
@@ -121,6 +134,14 @@ public class ActivitySearch extends AppCompatActivity {
                 Intent intent = new Intent(ActivitySearch.this, PalabraActivity.class);
                 intent.putExtra("PalabraId", palabra.getId());
                 startActivity(intent);
+            }
+        }, new RecyclerPalabrasAdapter.onImageButtonClickListener() {
+            @Override
+            public void onImageButtonClickListener(Palabra palabra) {
+                // Handle the ImageButton click event here
+                // Example: Toggle favorite status, show a toast, etc.
+                // For instance, you can show a toast message like this:
+                Toast.makeText(ActivitySearch.this, "Favorito clicked for " + palabra.getDefinicion(), Toast.LENGTH_SHORT).show();
             }
         }));
     }

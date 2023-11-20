@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +13,7 @@
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:hint="Busca tu Categoria">
+        android:hint="@string/categoria_buscar">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtBuscadorCat"
@@ -47,7 +46,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#94d46f"
-            android:contentDescription="Home Button"
+            android:contentDescription="@string/btn_home"
             android:src="@drawable/home" />
 
         <!-- Botón de la Lupa -->
@@ -57,7 +56,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#63cdb0"
-            android:contentDescription="Search Button"
+            android:contentDescription="@string/btn_buscar"
             android:src="@drawable/magnify" />
 
         <!-- Botón de la Estrella -->
@@ -67,7 +66,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#FFAB40"
-            android:contentDescription="Star Button"
+            android:contentDescription="@string/btn_fav"
             android:src="@drawable/heart" />
     </LinearLayout>
 

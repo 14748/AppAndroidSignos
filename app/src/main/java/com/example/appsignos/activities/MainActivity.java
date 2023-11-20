@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ActivityBuscarTodasPalabras.class);
+                Intent intent = new Intent(MainActivity.this, ActivitySearch.class);
+                intent.putExtra("NombreCategoria", "");
                 startActivity(intent);
             }
         });

@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:contentDescription="@string/palabra_imagen"
                 app:srcCompat="@drawable/cuchillo" />
         </LinearLayout>
 
@@ -53,6 +54,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="#ffffff"
+                android:contentDescription="@string/palabra_like"
                 android:src="@drawable/heart" />
         </LinearLayout>
 
