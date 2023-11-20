@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.appsignos.R;
@@ -51,6 +53,35 @@ public class ActivityFavs extends AppCompatActivity {
                     }
                 }
         ));
+
+        ImageButton btnBuscar = findViewById(R.id.btnBuscar);
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityFavs.this, ActivitySearch.class);
+                intent.putExtra("NombreCategoria", "");
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btnHome = findViewById(R.id.btnCasa);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityFavs.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btnFav = findViewById(R.id.btnFav);
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityFavs.this, ActivityFavs.class);
+                startActivity(intent);
+            }
+        });
 
 
 

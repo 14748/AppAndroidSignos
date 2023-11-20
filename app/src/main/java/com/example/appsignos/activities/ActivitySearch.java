@@ -112,6 +112,35 @@ public class ActivitySearch extends AppCompatActivity {
             }
         });
 
+        ImageButton btnBuscar = findViewById(R.id.btnBuscar);
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivitySearch.this, ActivitySearch.class);
+                intent.putExtra("NombreCategoria", "");
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btnHome = findViewById(R.id.btnCasa);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivitySearch.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btnFav = findViewById(R.id.btnFav);
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivitySearch.this, ActivityFavs.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 
