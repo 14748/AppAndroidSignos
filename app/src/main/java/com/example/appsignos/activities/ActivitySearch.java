@@ -87,7 +87,7 @@ public class ActivitySearch extends AppCompatActivity {
                     public void onImageButtonClickListener(Palabra palabra) {
                         realm.beginTransaction();
                         palabra.setFavorito(!palabra.getFavorito());
-                        Toast.makeText(ActivitySearch.this, "Favorito clicked for " + palabra.getDefinicion(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivitySearch.this, "Palabra anadida a favoritos " + palabra.getDefinicion(), Toast.LENGTH_SHORT).show();
                         realm.commitTransaction();
                     }
                 }
@@ -140,23 +140,11 @@ public class ActivitySearch extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
-
-
     }
-    ArrayList<Palabra> filtrarLista = new ArrayList<>();
     public void filtrar(String texto) {
-        filtrarLista.clear();
-        String textoLowerCase = texto.toLowerCase();
-        for (Palabra palabra : arrayListPalabra) {
-            String definicion = palabra.getDefinicion().toLowerCase().trim();
-            if (definicion.startsWith(textoLowerCase) || definicion.contains(textoLowerCase) || definicion.equals(textoLowerCase)) {
-                filtrarLista.add(palabra);
-            }
-        }
+        RealmResults<Palabra> filtrarLista = realm.where(Palabra.class)
+                .contains("definicion", texto.toLowerCase())
+                .findAll();
         recyclerView.setAdapter(new RecyclerPalabrasAdapter(filtrarLista, new RecyclerPalabrasAdapter.onItemClickListener() {
             @Override
             public void onItemClickListener(Palabra palabra) {
@@ -167,10 +155,10 @@ public class ActivitySearch extends AppCompatActivity {
         }, new RecyclerPalabrasAdapter.onImageButtonClickListener() {
             @Override
             public void onImageButtonClickListener(Palabra palabra) {
-                // Handle the ImageButton click event here
-                // Example: Toggle favorite status, show a toast, etc.
-                // For instance, you can show a toast message like this:
-                Toast.makeText(ActivitySearch.this, "Favorito clicked for " + palabra.getDefinicion(), Toast.LENGTH_SHORT).show();
+                realm.beginTransaction();
+                palabra.setFavorito(!palabra.getFavorito());
+                Toast.makeText(ActivitySearch.this, "Palabra anadida a favoritos " + palabra.getDefinicion(), Toast.LENGTH_SHORT).show();
+                realm.commitTransaction();
             }
         }));
     }
