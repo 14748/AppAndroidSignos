@@ -6,86 +6,135 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.appsignos.R;
+import com.example.appsignos.adapters.RecyclerCategoriasAdapter;
 import com.example.appsignos.adapters.RecyclerPalabrasAdapter;
 import com.example.appsignos.models.Categoria;
 import com.example.appsignos.models.Palabra;
+import com.example.appsignos.utils.Utils;
 
-import java.lang.reflect.Array;
+import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    List<Palabra> listaPalabras;
-    List<Categoria> listaCategoria;
-    Realm realm;
-    RealmResults<Categoria> resultsCategoria;
     RealmResults<Palabra> resultsPalabra;
-
+    RealmResults<Categoria> resultsCategoria;
+    Realm realm;
+    RecyclerView recyclerView;
+    TextView busqueda;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ArrayList<Palabra> pal = new ArrayList<Palabra>();
-        pal.add(new Palabra("patata", "patata", R.drawable.cuchillo, new Categoria("Adjetivos", 1)));
+        setContentView(R.layout.activity_landing);
+        ArrayList<Categoria> listaCategoria = new ArrayList<Categoria>();
 
-        RecyclerView recyclerView = findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerView.setAdapter(new RecyclerPalabrasAdapter(pal, new RecyclerPalabrasAdapter.onItemClickListener() {
+        realm = Realm.getDefaultInstance();
+
+        resultsPalabra = realm.where(Palabra.class).findAll();
+        if (resultsPalabra.size() == 0){
+            realm.beginTransaction();
+            AbstractMap.SimpleEntry<ArrayList<Palabra>, ArrayList<Categoria>> result = Utils.CargarPalabras();
+            realm.copyToRealmOrUpdate(result.getKey());
+            realm.copyToRealmOrUpdate(result.getValue());
+            realm.commitTransaction();
+        }
+
+        recyclerView = findViewById(R.id.recyclerCategorias);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        resultsCategoria = realm.where(Categoria.class).findAll();
+
+        recyclerView.setAdapter(new RecyclerCategoriasAdapter(resultsCategoria, new RecyclerCategoriasAdapter.OnCategoriaClickListener() {
             @Override
-            public void onItemClickListener(Palabra palabra) {
-
+            public void onCategoriaClick(Categoria categoria) {
+                Intent intent = new Intent(MainActivity.this, ActivitySearch.class);
+                intent.putExtra("NombreCategoria", categoria.getNombre());
+                startActivity(intent);
             }
         }));
 
-        /*
-        realm = Realm.getDefaultInstance();
 
-        // CREACIÓN CATEGORÍAS
-        //TODO HAY QUE CAMBIAR EL INT POR LA FOTO TODAVÍA
-        listaCategoria.add(new Categoria("Adjetivos", 1));
-        listaCategoria.add(new Categoria("Adverbios", 1));
-        listaCategoria.add(new Categoria("Verbos", 1));
-        listaCategoria.add(new Categoria("Días de la semana", 1));
-        listaCategoria.add(new Categoria("Estaciones", 1));
-        listaCategoria.add(new Categoria("Fiestas", 1));
-        listaCategoria.add(new Categoria("Meses del año", 1));
-        listaCategoria.add(new Categoria("Tiempo", 1));
-        listaCategoria.add(new Categoria("Casa", 1));
-        listaCategoria.add(new Categoria("Ciudad", 1));
-        listaCategoria.add(new Categoria("Medios de transporte", 1));
-        listaCategoria.add(new Categoria("Profesiones", 1));
-        listaCategoria.add(new Categoria("Colegio", 1));
-        listaCategoria.add(new Categoria("Colores", 1));
-        listaCategoria.add(new Categoria("Formas y tamaños", 1));
-        listaCategoria.add(new Categoria("Adjetivos", 1));
-        listaCategoria.add(new Categoria("Comidas y bebidas", 1));
-        listaCategoria.add(new Categoria("Cuerpo", 1));
-        listaCategoria.add(new Categoria("Sentidos", 1));
-        listaCategoria.add(new Categoria("Familia", 1));
-        listaCategoria.add(new Categoria("Animales", 1));
-        listaCategoria.add(new Categoria("Naturaleza", 1));
-        listaCategoria.add(new Categoria("Tiempo atmosférico", 1));
-        listaCategoria.add(new Categoria("Ropa", 1));
-        listaCategoria.add(new Categoria("Saludos y preguntas", 1));
-        //FIN CREACIÓN CATEGORÍAS
+        busqueda = findViewById(R.id.txtBuscadorCat);
+        busqueda.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        // CREACIÓN DE OBJETOS DE LA BASE DE DATOS
-        //listaPalabras.add(new Palabra("x", "descripcion", )) //TODO COMPLETAR
-        //FIN CREACIÓN OBJETOS DE LA BASE DE DATOS
+            }
 
-        realm.beginTransaction();
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-        realm.commitTransaction();
+            }
 
-        resultsCategoria = realm.where(Categoria.class).findAll();
-        resultsPalabra = realm.where(Palabra.class).findAll();
-         */
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filtrar(editable.toString());
+            }
+        });
+
+        ImageButton btnBuscar = findViewById(R.id.btnBuscar);
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ActivitySearch.class);
+                intent.putExtra("NombreCategoria", "");
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btnHome = findViewById(R.id.btnCasa);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btnFav = findViewById(R.id.btnFav);
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ActivityFavs.class);
+                startActivity(intent);
+            }
+        });
+
     }
+    ArrayList<Categoria> filtrarLista = new ArrayList<>();
+    public void filtrar(String texto) {
+        filtrarLista.clear();
+        String textoLowerCase = texto.toLowerCase();
+        for (Categoria cat : resultsCategoria) {
+            String definicion = cat.getNombre().toLowerCase().trim();
+            if (definicion.startsWith(textoLowerCase) || definicion.contains(textoLowerCase) || definicion.equals(textoLowerCase)) {
+                filtrarLista.add(cat);
+            }
+        }
+
+        RecyclerCategoriasAdapter recyclerDataAdapter = new RecyclerCategoriasAdapter(filtrarLista, new RecyclerCategoriasAdapter.OnCategoriaClickListener() {
+            @Override
+            public void onCategoriaClick(Categoria categoria) {
+                Intent intent = new Intent(MainActivity.this, ActivitySearch.class);
+                intent.putExtra("NombreCategoria", categoria.getNombre());
+                startActivity(intent);
+            }
+        });
+
+        // Use the correct RecyclerView ID here
+        RecyclerView recyclerView = findViewById(R.id.recyclerCategorias);
+        recyclerView.setAdapter(recyclerDataAdapter);
+    }
+
 }

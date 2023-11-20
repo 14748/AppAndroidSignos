@@ -3,6 +3,7 @@ package com.example.appsignos.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,14 +18,17 @@ import java.util.List;
 
 public class RecyclerPalabrasAdapter extends RecyclerView.Adapter<RecyclerPalabrasAdapter.RecyclerDataHolder> {
 
-    List<Palabra> listPalabras;
-    onItemClickListener listener;
+    private List<Palabra> listPalabras;
+    private onItemClickListener itemClickListener;
+    private onImageButtonClickListener imageButtonClickListener;
 
-    public RecyclerPalabrasAdapter(List<Palabra> listPalabras, onItemClickListener listener){
+    public RecyclerPalabrasAdapter(List<Palabra> listPalabras,
+                                   onItemClickListener itemClickListener,
+                                   onImageButtonClickListener imageButtonClickListener) {
         this.listPalabras = listPalabras;
-        this.listener = listener;
+        this.itemClickListener = itemClickListener;
+        this.imageButtonClickListener = imageButtonClickListener;
     }
-
 
     @NonNull
     @Override
@@ -35,7 +39,7 @@ public class RecyclerPalabrasAdapter extends RecyclerView.Adapter<RecyclerPalabr
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerPalabrasAdapter.RecyclerDataHolder holder, int position) {
-        holder.assignData(listPalabras.get(position), listener);
+        holder.assignData(listPalabras.get(position), itemClickListener, imageButtonClickListener);
     }
 
     @Override
@@ -43,42 +47,53 @@ public class RecyclerPalabrasAdapter extends RecyclerView.Adapter<RecyclerPalabr
         return listPalabras.size();
     }
 
-
-
-
-
-
-
-
-
     public class RecyclerDataHolder extends RecyclerView.ViewHolder {
 
         TextView word;
         ImageView image;
+        ImageButton btnFavorito;
         LinearLayout linearLayout_palabra;
         LinearLayout linearLayout_image;
+
         public RecyclerDataHolder(@NonNull View itemView) {
             super(itemView);
             word = itemView.findViewById(R.id.wordPalabra_textView);
             image = itemView.findViewById(R.id.imagenPalabra_imageView);
+            btnFavorito = itemView.findViewById(R.id.btnFavorito);
             linearLayout_palabra = itemView.findViewById(R.id.palabra_LinearLayout);
             linearLayout_image = itemView.findViewById(R.id.image_LinearLayout);
         }
 
-        public void assignData(Palabra palabra, onItemClickListener onItemClickListener){
+        public void assignData(Palabra palabra,
+                               onItemClickListener onItemClickListener,
+                               onImageButtonClickListener onImageButtonClickListener) {
             word.setText(palabra.getDefinicion());
             image.setImageResource(palabra.getImagen());
-            //TODO: falta ponerle colores y eso, hay que hablar de cómo darle estilo
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onItemClickListener.onItemClickListener(palabra);
-                }
+            updateImageButtonState(btnFavorito, palabra.getFavorito());
+
+            itemView.setOnClickListener(view -> onItemClickListener.onItemClickListener(palabra));
+            btnFavorito.setOnClickListener(view -> {
+                boolean newSelectedState = !palabra.getFavorito();
+                updateImageButtonState(btnFavorito, newSelectedState);
+                onImageButtonClickListener.onImageButtonClickListener(palabra);
             });
+        }
+
+        private void updateImageButtonState(ImageButton imageButton, boolean isSelected) {
+            imageButton.setSelected(isSelected);
+            if (isSelected) {
+                imageButton.setImageResource(R.drawable.heart_red); // Replace with your red heart drawable
+            } else {
+                imageButton.setImageResource(R.drawable.heart); // Replace with your normal heart drawable
             }
         }
-    public interface onItemClickListener{
-            void onItemClickListener(Palabra palabra);
-    }
     }
 
+    public interface onItemClickListener {
+        void onItemClickListener(Palabra palabra);
+    }
+
+    public interface onImageButtonClickListener {
+        void onImageButtonClickListener(Palabra palabra);
+    }
+}

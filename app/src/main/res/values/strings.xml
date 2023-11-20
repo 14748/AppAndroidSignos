@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AppSignos</string>
+    <string name="titulo_search">Todas las Palabras</string>
+    <string name="titulo_buscar">Busca tu Palabra</string>
+    <string name="palabra_like">Palabra me gusta</string>
+    <string name="palabra_imagen">Imagen de la palabra</string>
+    <string name="btn_buscar">Boton Buscar</string>
+    <string name="btn_home">Boton Home</string>
+    <string name="btn_fav">Boton Favoritos</string>
+    <string name="categoria_buscar">Busca tu Categoria</string>
 </resources>
